@@ -1,0 +1,17 @@
+apiVersion: flows.knative.dev/v1beta1
+kind: Sequence
+metadata:
+  name: loan-app-sequence
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: KafkaChannel
+  steps:
+    - ref:
+        apiVersion: serving.knative.dev/v1
+        kind: Sequence
+        name: router-sequence
+    - ref:
+        apiVersion: serving.knative.dev/v1
+        kind: Parallel
+        name: analyics-parallel

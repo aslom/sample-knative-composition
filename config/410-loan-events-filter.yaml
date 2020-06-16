@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: loan-events-filter
+spec:
+  template:
+    spec:
+      containers:
+      - image: alek/filter-nodejs:0.1
+        env:
+        - name: CE_SOURCE
+          value: loan-workflow

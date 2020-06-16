@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: event-supported-in-new-analytics-filter
+spec:
+  template:
+    spec:
+      containers:
+      - image: alek/filter-nodejs:0.1
+        env:
+        - name: CE_SOURCE
+          value: loan-workflow
+        - name: CE_SUBJECT
+          value: Gather

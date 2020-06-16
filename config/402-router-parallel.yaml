@@ -1,0 +1,30 @@
+apiVersion: flows.knative.dev/v1beta1
+kind: Parallel
+metadata:
+  name: router-parallel
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: KafkaChannel
+  branches:
+    - filter:
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Service
+          name: event-supported-analytics-v1-filter
+      subscriber:
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Parallel
+          name: analytics-sequence
+    - filter:
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Service
+          name: event-supported-in-new-analytics-filter
+      subscriber:
+        ref:
+          apiVersion: flows.knative.dev/v1beta1
+          kind: Sequence
+          name: additional-analyics-pipeline
+  

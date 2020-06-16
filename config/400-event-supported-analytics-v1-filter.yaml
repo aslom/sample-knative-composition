@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: event-supported-analytics-v1-filter
+spec:
+  template:
+    spec:
+      containers:
+      - image: aslom/filter-cloud-events:0.1
+        env:
+        - name: CE_SOURCE
+          value: loan-workflow

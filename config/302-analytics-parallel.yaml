@@ -1,0 +1,28 @@
+apiVersion: flows.knative.dev/v1beta1
+kind: Parallel
+metadata:
+  name: analytics-parallel
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: KafkaChannel
+    spec:
+        delivery:
+          backoffDelay: 3s
+          backoffPolicy: exponential
+          deadLetterSink:
+              apiVersion: serving.knative.dev/v1
+              kind: Service
+              name: event-audit
+          retry: 5
+  branches:
+    - subscriber:
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Service
+          name: store-event-in-data-lake
+    - subscriber:
+        ref:
+          apiVersion: flows.knative.dev/v1beta1
+          kind: Sequence
+          name: analytics-sequence

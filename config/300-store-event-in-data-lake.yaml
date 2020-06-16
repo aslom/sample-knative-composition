@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: store-event-in-data-lake
+spec:
+  template:
+    spec:
+      containers:
+      - image: aslom/store-event-in-hdfs
+        env:
+        - name: HDFS_URL
+          value: http://hdfs:50070
