@@ -1,15 +1,12 @@
-# sample-knative-composition
+# Sample Knative composition of serverless Loan analytics application
+
 Sample composition of serverless event-drive analytics application using Knative
 
 
 ## Overview
 
 This sample demonstrates how to compose analytics for 
-events coming from simple loan workflow. The workflow has four activities:
-* Receive
-* Evaluate
-* Gather (optional activity to investigate loan)
-* Decide
+events coming from simple loan workflow. The workflow has four activities (such as Receive loan applicaion Evaluate, Gather evidence, and Decide).
 
 The events are filtered, stored in data lake and Elastic Search, and analytics processes events to compute duration of activities. Output of analytics is stored in Elastic Search to visualize in Kibana dashboards. And the analytics may also create alert events.
 
