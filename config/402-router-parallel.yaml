@@ -26,5 +26,5 @@ spec:
         ref:
           apiVersion: flows.knative.dev/v1beta1
           kind: Sequence
-          name: additional-analyics-pipeline
+          name: summary-analyics-pipeline
   

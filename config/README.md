@@ -1,24 +1,5 @@
 # Sample Knative composition of analytiics for workflow events
 
-## Overview
-
-This sample demonstrates how to compose anltics for 
-events coming from simple loan workflow. The workflow had four
-activities:
-* Receive
-* Evaluate
-* Gather (optional activity to investigate loan)
-* Decide
-
-## Reqirements
-
-Knative Serving and Eventing verison 1.13
-TODO link to install
-
-Elastic Search and Kibana Open Distor version
-TODO link to docker-compose and/or k8s install
-
-## Deployment steps
 
 Example analytics is aggreagting events to determine how long activities take and generats alert if workflow takes longer than 10 days from Receive.
 
@@ -50,13 +31,14 @@ Now add front filtering of events and dynamic routing.
 400-event-supported-analytics-v1-filter.yaml
 401-event-supported-in-new-analytics-filter.yaml
 402-router-parallel.yaml
-403-loan-events-filter.yaml
-404-router-sequence.yaml
+403-summary-analyics-alert-pipelinexx.yaml
+410-loan-events-filter.yaml
+411-router-sequence.yaml
 ```
 
 
 Finally combined router-sequence.yaml and analytics-parallel into loan-app-sequence:
 
 ```
-loan-app-sequence.yaml
+500-loan-app-sequence.yaml
 ```
